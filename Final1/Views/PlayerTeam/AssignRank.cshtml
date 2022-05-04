@@ -1,0 +1,42 @@
+﻿@using Final1.Models.Entities;
+@model PlayerTeamRank
+
+@{
+    var player = Model!.Player;
+    var team = Model!.Team;
+    ViewData["Title"] = $"Assigning rank to {player!.FirstName} {player!.LastName}" +
+        $" for course {team!.Code}";
+}
+
+<h4>@ViewData["Title"]</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AssignRank" id="formAssignRank">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="playerTeamId" value="@Model!.Id" />
+            <input type="hidden" name="Number" value="@player!.Number" />
+            <div class="form-group">
+                <label asp-for="Rank" class="control-label"></label>
+                <select asp-for="Rank" class="form-select">
+                    <option value="D1">DivisionOne</option>
+                    <option value="D2">DivisionTwo</option>
+                    <option value="D3">DivisionThree</option>
+                    <option value="U">Unranked</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Assign Rank" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Details" asp-controller="Player" 
+        asp-route-id="@player!.Number">Back to Player Details</a>
+</div>
+
+@section Scripts {
+    <script defer src="~/js/playerTeamAssignRank.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Player Team Report";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Player
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Rank
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+</table>
+
+@section Scripts{
+    <script defer src="~/js/playerTeamIndex.js"></script>
+}

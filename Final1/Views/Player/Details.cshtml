@@ -1,0 +1,78 @@
+﻿@model Final1.Models.Entities.Player
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Assign" asp-controller="Team" asp-route-id="@Model!.Number">Assign Team</a> |
+    <a asp-action="Index">Back to Player Tracker</a>
+</div>
+<h3>Assign Teams</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Team Number
+            </th>
+            <th>
+                Scheduled Games
+            </th>
+            <th>
+                Rank
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.TeamRanks)
+            {
+                <tr>
+                    <td>
+                        @item.Team!.Code
+                    </td>
+                    <td>
+                        @item.Team!.ScheduledGames
+                    </td>
+                    <td>
+                        @item.Rank
+                    </td>
+                    <td>
+                        <a asp-action="assignteam" asp-controller="PlayerTeam"
+                            asp-route-id="@Model!.Number" asp-route-courseId="@item.TeamId">
+                            Assign Rank
+                        </a> |
+                        <a asp-action="remove" asp-controller="PlayerTeam"
+                            asp-route-id="@Model!.Number" asp-route-courseId="@item.TeamId">
+                            Remove Team
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

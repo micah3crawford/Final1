@@ -1,0 +1,20 @@
+﻿@using Final1.Models.ViewModels;
+@model PlayerTeamVM
+
+<h3>
+    Are you sure you want to assign player @Model!.Player!.FirstName @Model!.Player!.LastName
+    to team @Model!.Team!.Code?
+</h3>
+
+
+<form asp-action="Create" id="formCreatePlayerTeam">
+    <input type="hidden" name="Number" value="@Model.Player.Number" />
+    <input type="hidden" name="teamId" value="@Model.Team.Id" />
+    <input type="submit" value="Assign" class="btn btn-danger" /> |
+    <a asp-action="Assign" asp-controller="Team"
+       asp-route-id="@Model!.Player!.Number">Cancel Assign</a>
+</form>
+
+@section Scripts{
+    <script defer src="~/js/playerTeamCreate.js"></script>
+}

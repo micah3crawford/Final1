@@ -1,0 +1,26 @@
+﻿@using Final1.Models.Entities;
+@model PlayerTeamRank
+
+@{
+    var player = Model!.Player;
+    var team = Model!.Team;
+    ViewData["Title"] = "Please confirm removing team";
+    var question = $"Are you sure you want to remove {team!.Code} " +
+        $"from {player!.FirstName} {player!.LastName}?";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@question</h3>
+<div>
+    <form asp-action="Remove" id="formRemove">
+        <input type="hidden" name="playerTeamId" value="@Model!.Id" />
+        <input type="hidden" name="Number" value="@player!.Number" />
+        <input type="submit" value="Yes, Remove Team from player" class="btn btn-danger" /> |
+        <a asp-action="Details" asp-controller="Player" asp-route-id="@player!.Number">
+            Back to Player Details
+        </a>
+    </form>
+</div>
+
+@section Scripts {
+    <script defer src="~/js/playerTeamRemove.js"></script>
+}

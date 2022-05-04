@@ -1,0 +1,39 @@
+﻿@using Final1.Models.ViewModels;
+@model IEnumerable<PlayerRanksReportVM>
+
+@{
+    ViewData["Title"] = ViewData["Message"];
+}
+<h1>@ViewData["Message"]</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamFullCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rank)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlayerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamFullCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rank)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
